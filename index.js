@@ -1,16 +1,17 @@
 const express = require("express")
 const app = express()
 const mongoose = require('mongoose')
+const cors = require('cors')
 require('dotenv').config()
-
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.vetwi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => {
-        console.log("connected to db")
-    })
-
 // import routes
 const authRoute = require('./routes/auth');
+
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log("connection successful"))
+.catch(err => console.log(err))
+
+app.use(cors());
+app.use(express.json());
 
 // Route middleware
 app.use('/api/user', authRoute)
