@@ -12,4 +12,14 @@ const registerValidation = (body) => {
     return error
 } 
 
+const loginValidation = (body) => {
+    const schema = {
+        email: Joi.string().min(5).required(),
+        password: Joi.string().min(3).required()
+    }
+    const {error} = Joi.validate(body, schema);
+    return error
+} 
+
 module.exports.registerValidation = registerValidation
+module.exports.loginValidation = loginValidation
