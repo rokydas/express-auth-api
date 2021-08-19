@@ -16,6 +16,11 @@ app.use(express.json());
 // Route middleware
 app.use('/api/user', authRoute)
 
+// starting get api
+app.get('/', (req, res) => {
+    res.send({msg: 'root api created'})
+})
+
 
 app.listen(process.env.PORT || 5000, () => {
     console.log("server is running")
