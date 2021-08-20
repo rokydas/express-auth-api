@@ -32,7 +32,7 @@ router.post('/register', async (req, res) => {
     }
 })
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => { 
 
     // validation before making user
     const error = loginValidation(req.body)
@@ -48,7 +48,7 @@ router.post('/login', async (req, res) => {
 
     // create and assign a token
     const token = jwt.sign({_id: user._id, email: user.email}, process.env.TOKEN_SECRET)
-    res.header('auth-token', token).send({msg: 'Logged in'})
+    res.header('auth-token', token).send(user)
     
     // successful login
     // res.send({msg: 'Logged in'})
