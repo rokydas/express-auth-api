@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 // Route middleware
-app.use('/api/user', authRoute)
+app.use('/', authRoute)
 
 // starting get api
 app.get('/', (req, res) => {
